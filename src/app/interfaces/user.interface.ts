@@ -6,4 +6,5 @@ export interface User {
     dob: string;     
     address: string;
     gender: string;
+    photo: string;
 }
