@@ -1,0 +1,11 @@
+@use "./theme/scss/variables.scss";
+@use "./theme/scss/layout.scss";
+
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+html, body{
+    margin: 0;
+    height: 100%;
+}
