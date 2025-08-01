@@ -13,7 +13,8 @@ export const MENU_ITEMS: MenuItem[] = [
     },
     {
         label: 'Report',
-        icon: 'bi bi-bar-chart-fill',
+        // icon: 'bi bi-bar-chart-fill',
+        icon: 'fas fa-chart-column',
         route: '',
         submenu:[
             {
