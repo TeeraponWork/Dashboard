@@ -6,6 +6,9 @@ import { User } from '../../../interfaces/user.interface';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 @Component({
   selector: 'app-users',
   imports: [ContentHeader, NgxDatatableModule, DatePipe,MatButtonModule,MatIconModule],
@@ -94,6 +97,52 @@ onSortChange(event: any) {
     this.updatePagedUsers(); // 👈 ต้องอัปเดตหน้า
   }
 }
+  exportToExcel() {
+    const fields = ['id','name', 'email', 'phone', 'address'];
+    const values = this.users();
 
+    const sheetName = 'users';
 
+    const data = this.prepareDataInExcel(values, fields);
+
+    // const header = fields.reduce((acc, field) => {
+    //   acc[field] = field.charAt(0).toUpperCase() + field.slice(1);
+    //   return acc;
+    // }, {} as Record<string, string>);
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data, { 
+      header: Object.keys(data[0]), 
+      // header: Object.values(header),
+      // skipHeader: true,
+    });
+
+    const workBook: XLSX.WorkBook = {
+      Sheets: { [sheetName]: worksheet },
+      SheetNames: [sheetName]
+    };
+
+    const excelBuffer: any = XLSX.write(workBook, {
+      bookType: 'xlsx',
+      type: 'array'
+    });
+
+    const file = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+    });
+
+    saveAs(file, `users.xlsx`);
+ }
+ prepareDataInExcel(values: User[], fields: string[]) {
+    const dataExport = values.map((value) => {
+      const filteredRow: Record<string, any> = {};
+      fields.forEach((field) => {
+        if(field in value){
+          filteredRow[field] = value[field as keyof User];
+        }
+      });
+      return filteredRow;
+    });
+
+    return dataExport;
+  }
 }

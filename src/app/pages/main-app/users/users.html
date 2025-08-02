@@ -9,6 +9,10 @@
       (input)="onFilterChange($event)"
       />
 
+      <button class="px-0 border-0 ms-2" mat-icon-button (click)="exportToExcel()">
+        <i class="bi bi-file-earmark-excel-fill text-success fs-2"></i>
+      </button>
+
       <button class="mx-2" mat-raised-button color="accent">
         <mat-icon ria-hidden="false" aria-label="icon" fontIcon="add">add</mat-icon>
         ADD USER
