@@ -1,6 +1,15 @@
 <div class="mx-4 my-1 border-0">
   <app-content-header [title]="title" [subRoute]="title"></app-content-header>
 
+  <div class="d-flex align-items-center justify-content-end">
+    <input 
+      type="text" 
+      placeholder="Search users" 
+      class="form-control border-white px-2 py-1 search-table-input" 
+      (input)="onFilterChange($event)"
+      />
+  </div>
+
   <div class="col-md-12 md-3 mt-1">
     <ngx-datatable
       #table

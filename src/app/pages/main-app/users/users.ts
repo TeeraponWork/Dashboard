@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 import { ContentHeader } from '../../../widgets/content-header/content-header';
-import { ColumnMode, NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { USERS } from '../../../mock-data/users.mock';
 import { User } from '../../../interfaces/user.interface';
 import { DatePipe } from '@angular/common';
@@ -12,6 +12,9 @@ import { DatePipe } from '@angular/common';
   styleUrl: './users.scss'
 })
 export class Users {
+
+  //@ViewChild(DatatableComponent)  // Corrected typo from VuewChild to ViewChild
+  table = viewChild<DatatableComponent>(DatatableComponent);
   title = 'USERS'
   temp = signal<User[]>([]);
   users = signal<User[]>([]);
@@ -43,9 +46,7 @@ export class Users {
     console.error(e);
   }
 }
-
-
-  onPageChange(event: any) {
+onPageChange(event: any) {
   this.page.set(event.offset);
   this.updatePagedUsers();
 }
@@ -56,6 +57,23 @@ export class Users {
   const end = start + this.limit();
   const pageData = all.slice(start, end);
   this.users.set(pageData);
+
+  this.table()!.offset = 0; // รีเซ็ต offset ของตาราง
+}
+
+onFilterChange(event: any) {
+  console.log(event.target.value);
+  const val = event.target.value.toLowerCase();
+
+  const filterData = this.temp().filter(item =>{
+    return item?.name.toLowerCase().indexOf(val) !== -1 ||
+           item?.email.toLowerCase().indexOf(val) !== -1 ||
+           item?.phone.toLowerCase().indexOf(val) !== -1 ||
+           item?.address.toLowerCase().indexOf(val) !== -1 ||
+           item?.gender.toLowerCase().indexOf(val) !== -1 ||
+           !val;
+  });
+  this.users.set(filterData);
 }
 
 onSortChange(event: any) {
