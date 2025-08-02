@@ -145,4 +145,9 @@ onSortChange(event: any) {
 
     return dataExport;
   }
+
+  deleteItem(user: User){
+    this.temp.update((users) => users.filter((usr) => usr.id !== user.id));
+    this.users.update((users) => users.filter((usr) => usr.id !== user.id));
+  }
 }
