@@ -159,6 +159,6 @@ onSortChange(event: any) {
 
   openUserFormModel(template: TemplateRef<void>, user?: User) {
     this.updateItem.set(user ?? null);
-    this.modalRef.set(this.modalService.show(template));
+    this.modalRef.set(this.modalService.show(template, {class: 'modal-lg'}));
   }
 }

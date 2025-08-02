@@ -117,9 +117,9 @@
 
 <!-- user form modal-->
  <ng-template #userFormTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">{{ updateItem() ? 'Edit' : 'Add' }} User</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef()?.hide()">
+  <div class="modal-header d-flex align-items-center justify-content-between">
+    <h4 class="modal-title mb-0">{{ updateItem() ? 'Edit' : 'Add' }} User</h4>
+    <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef()?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
