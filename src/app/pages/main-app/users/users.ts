@@ -4,10 +4,11 @@ import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ng
 import { USERS } from '../../../mock-data/users.mock';
 import { User } from '../../../interfaces/user.interface';
 import { DatePipe } from '@angular/common';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-users',
-  imports: [ContentHeader, NgxDatatableModule, DatePipe],
+  imports: [ContentHeader, NgxDatatableModule, DatePipe,MatButtonModule,MatIconModule],
   templateUrl: './users.html',
   styleUrl: './users.scss'
 })

@@ -31,6 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/admin-lte/dist/css/adminlte.min.css",
 
               "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
