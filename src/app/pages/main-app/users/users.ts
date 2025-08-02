@@ -1,4 +1,4 @@
-import { Component, signal, viewChild } from '@angular/core';
+import { Component, Inject, signal, TemplateRef, viewChild,inject } from '@angular/core';
 import { ContentHeader } from '../../../widgets/content-header/content-header';
 import { ColumnMode, DatatableComponent, NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { USERS } from '../../../mock-data/users.mock';
@@ -8,10 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-
+import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
+import { EditUser } from "./components/edit-user/edit-user";
 @Component({
   selector: 'app-users',
-  imports: [ContentHeader, NgxDatatableModule, DatePipe,MatButtonModule,MatIconModule],
+  imports: [ContentHeader, NgxDatatableModule, DatePipe, MatButtonModule, MatIconModule, ModalModule, EditUser,EditUser],
+  providers: [BsModalService],
   templateUrl: './users.html',
   styleUrl: './users.scss'
 })
@@ -24,6 +26,10 @@ export class Users {
   users = signal<User[]>([]);
   columnMode = ColumnMode;
   loadingIndicator = signal<boolean>(false);
+  modalRef = signal<BsModalRef | null>(null);
+  updateItem = signal<User | null>(null);
+
+  modalService = inject(BsModalService);
 
   page = signal<number>(0); // หน้าเริ่มต้น (เริ่มที่ 0)
   limit = signal<number>(10); // จำนวนรายการต่อหน้า
@@ -149,5 +155,10 @@ onSortChange(event: any) {
   deleteItem(user: User){
     this.temp.update((users) => users.filter((usr) => usr.id !== user.id));
     this.users.update((users) => users.filter((usr) => usr.id !== user.id));
+  }
+
+  openUserFormModel(template: TemplateRef<void>, user?: User) {
+    this.updateItem.set(user ?? null);
+    this.modalRef.set(this.modalService.show(template));
   }
 }
