@@ -161,4 +161,25 @@ onSortChange(event: any) {
     this.updateItem.set(user ?? null);
     this.modalRef.set(this.modalService.show(template, {class: 'modal-lg'}));
   }
+
+  addUser(user: User) {
+    this.temp.update((users) => [user,...users]);
+    this.users.update((users) => [user,...users]);
+    this.closeUserModel();
+  }
+  updateUser(updatedUser: User) {
+    alert('update user');
+    this.temp.update((users) =>
+      users.map((user) => (user.id === updatedUser.id ?
+      updatedUser : user))
+    );
+    this.users.update((users) =>
+      users.map((user) => (user.id === updatedUser.id ?
+      updatedUser : user))
+    );
+    this.closeUserModel();
+  }
+  closeUserModel(){
+    this.modalRef()?.hide();
+  }
 }

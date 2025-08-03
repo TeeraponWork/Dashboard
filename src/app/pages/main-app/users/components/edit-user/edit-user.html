@@ -26,7 +26,8 @@
         </div>
         <div class="form-group col-xl-6 col-sm-6 col-12">
             <label>GENDER<span class="text-danger">*</span></label>
-            <ngx-select [items]="['Male', 'Female', 'Other']" placeholder="Select Gender"></ngx-select>
+            <ngx-select [items]="['male', 'female', 'other']" placeholder="Select Gender" 
+            formControlName="gender"></ngx-select>
         </div>
         <div class="form-group col-xl-6 col-sm-6 col-12">
             <label>ADDRESS<span class="text-danger">*</span></label>

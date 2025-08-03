@@ -119,11 +119,15 @@
  <ng-template #userFormTemplate>
   <div class="modal-header d-flex align-items-center justify-content-between">
     <h4 class="modal-title mb-0">{{ updateItem() ? 'Edit' : 'Add' }} User</h4>
-    <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef()?.hide()">
+    <button type="button" class="btn-close close" aria-label="Close" (click)="closeUserModel()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-edit-user></app-edit-user>
+    <app-edit-user 
+      [updateItem]="updateItem()!" 
+      (addedData)="addUser($event)" 
+      (updatedData)="updateUser($event)">
+    </app-edit-user>
   </div>
 </ng-template>
