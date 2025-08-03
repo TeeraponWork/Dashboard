@@ -13,11 +13,3 @@ An Angular-based admin dashboard project built following the [Build Admin Dashbo
 - **Reactive Forms** for form handling
 
 ---
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/EcommerceAdminPortal.git
-cd EcommerceAdminPortal
