@@ -1,0 +1,20 @@
+# ไม่ต้อง copy ไฟล์ build เข้ามา เพราะจะ build ใหม่ใน container
+dist
+
+# Node modules ใช้เฉพาะใน container ไม่ต้อง copy
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+.pnpm-store
+.yarn
+
+# ไฟล์ Git และ Editor
+.git
+.gitignore
+.vscode
+.idea
+
+# ไฟล์ระบบ
+.DS_Store
+Thumbs.db
