@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-options-list',
@@ -11,6 +12,8 @@ export class HeaderOptionsList {
   isMessages = signal<boolean>(false);
   isNotifications = signal<boolean>(false);
   isProfileOpen = signal<boolean>(false);
+
+  constructor(private router: Router) {}
 
   setMessages(value?: boolean){
     this.isMessages.set(value ?? !this.isMessages());
@@ -75,5 +78,9 @@ export class HeaderOptionsList {
         }
       }
     }
+  }
+  logOut(){
+    localStorage.removeItem('token'); // หรือ localStorage.clear() ถ้าจะล้างทั้งหมด
+    this.router.navigate(['/login']); // กลับไปหน้า login
   }
 }
