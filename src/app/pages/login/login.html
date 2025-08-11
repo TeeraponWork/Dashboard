@@ -1,0 +1,10 @@
+<div class="log-form">
+  <h2>Login to your account</h2>
+  <form (ngSubmit)="login()">
+    <input type="text" title="username" name="username" [(ngModel)]="username" placeholder="username" />
+    <input type="password" title="username" name="password" [(ngModel)]="password" placeholder="password" />
+    <button type="submit" class="btn">Login</button>
+    <a class="forgot" href="#">Forgot Password?</a>
+    <a class="signup" href="#">Sign up</a>
+  </form>
+</div>

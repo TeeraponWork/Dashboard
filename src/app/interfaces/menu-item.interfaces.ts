@@ -4,4 +4,5 @@ export interface MenuItem{
     route?: string;
     submenu?: MenuItem[];
     isHeader?: boolean;
+    roles?: string[]; 
 }

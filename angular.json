@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/ecommerce-admin-portal",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -31,10 +32,23 @@
             ],
             "styles": [
               "src/styles.scss",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/admin-lte/dist/css/adminlte.min.css",
+
               "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+
               "./node_modules/overlayscrollbars/styles/overlayscrollbars.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+              "./node_modules/@swimlane/ngx-datatable/index.css",
+              "./node_modules/@swimlane/ngx-datatable/themes/material.scss",
+              "./node_modules/@swimlane/ngx-datatable/themes/dark.scss",
+              "./node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
+
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+
             ],
             "scripts": [
               "./node_modules/admin-lte/dist/js/adminlte.min.js",
@@ -47,7 +61,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,5 +116,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
