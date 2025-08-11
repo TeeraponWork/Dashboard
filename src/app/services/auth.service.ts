@@ -1,16 +1,9 @@
-// src/app/services/auth.service.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ApiResult, catchApiError, unwrapApiResult } from '../core/utils/api-result';
 import { AuthRoleService } from '../core/auth/auth-role.service';
-
-interface LoginValue {
-  user: string;
-  accessToken: string;
-  refreshToken: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -25,13 +18,9 @@ export class AuthService {
       .pipe(
         unwrapApiResult<LoginValue>(),
         map(v => {
-          // ✅ อัปเดต token ผ่าน AuthRoleService (กระตุ้น signal)
           this.authRole.setToken(v.accessToken);
-
-          // เก็บ refresh / userId ตามต้องใช้
           localStorage.setItem('refresh_token', v.refreshToken);
           localStorage.setItem('id_user', v.user);
-
           return { token: v.accessToken };
         }),
         catchApiError()
