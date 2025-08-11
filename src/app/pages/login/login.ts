@@ -21,12 +21,10 @@ export class Login {
 
   login() {
     this.authService.login(this.username, this.password).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.token);
+      next: () => {
         this.router.navigate(['/app/dashboard']);
       },
       error: (err) => {
-        console.error('Login error:', err);
         alert('Login failed: ' + (err?.error?.message || err.message || 'Unknown error'));
       }
     });

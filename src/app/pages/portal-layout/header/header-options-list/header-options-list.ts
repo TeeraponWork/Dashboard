@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-header-options-list',
@@ -13,7 +14,7 @@ export class HeaderOptionsList {
   isNotifications = signal<boolean>(false);
   isProfileOpen = signal<boolean>(false);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private AuthService: AuthService) {}
 
   setMessages(value?: boolean){
     this.isMessages.set(value ?? !this.isMessages());
@@ -80,7 +81,17 @@ export class HeaderOptionsList {
     }
   }
   logOut(){
-    localStorage.removeItem('token'); // หรือ localStorage.clear() ถ้าจะล้างทั้งหมด
-    this.router.navigate(['/login']); // กลับไปหน้า login
+    const userId = localStorage.getItem('id_user')?.toString();
+    const refresh = localStorage.getItem('refresh_token')?.toString();
+
+    this.AuthService.logout(userId ? userId : "", refresh ? refresh : "").subscribe({
+      next: () => {
+        this.router.navigate(['/login']); 
+      },
+      error: (err) => {
+        this.router.navigate(['/login']); 
+        console.error('Logout failed', err);
+      }
+    });
   }
 }

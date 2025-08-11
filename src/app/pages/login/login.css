@@ -102,3 +102,17 @@ body {
 .log-form .forgot:hover {
   color: #1aa4ad; /* darken(#1fb5bf, 5%) approx */
 }
+
+.log-form .signup {
+  margin-right: 30px;
+  color: #4fd0d9; /* lighten(#1fb5bf, 10%) approx */
+  position: relative;
+  top: 2.5em;
+  text-decoration: none;
+  font-size: .75em;
+  float: right;
+}
+
+.log-form .signup:hover {
+  color: #1aa4ad; /* darken(#1fb5bf, 5%) approx */
+}
