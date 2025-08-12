@@ -3,16 +3,21 @@ import { Routes } from '@angular/router';
 import { canMatchAuth, canActivateRole } from './core/guards/role.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
+  { 
+    path: '', redirectTo: 'login', pathMatch: 'full' 
+  },
   {
     path: 'login',
     loadComponent: () => import('./pages/login/login').then(c => c.Login),
   },
   {
-        path: 'forbidden',
-        loadComponent: () => import('./pages/forbidden/forbidden').then(c => c.Forbidden),
-      },
+    path: 'forbidden',
+    loadComponent: () => import('./pages/forbidden/forbidden').then(c => c.Forbidden),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register').then(c => c.Register),
+  },
   {
     path: 'app',
     canMatch: [canMatchAuth], // ✅ เช็คว่า "ล็อกอินแล้ว" เท่านั้น

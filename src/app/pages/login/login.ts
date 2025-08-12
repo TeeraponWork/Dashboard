@@ -29,4 +29,8 @@ export class Login {
       }
     });
   }
+
+  signup() {
+    this.router.navigate(['/register']);
+  }
 }
